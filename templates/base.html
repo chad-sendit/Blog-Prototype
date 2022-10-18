@@ -1,0 +1,55 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What's the Vibe?</title>
+    <link 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" 
+        rel="stylesheet" 
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" 
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  </head>
+  <body>
+    <header class="p-md-2">
+      <div class='nav-left'>
+        <h1><a href="{% url 'home' %}">What's the Vibe?</a><img src="{% static 'media/CoffeeCup.jpg' %}" alt="Coffee Cup" alt="Coffee Cup" width="35" height="35" /></h1>
+        <a href="{% url 'home' %}">Home</a> |
+        {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}">Log out</a>
+          <p>Hi {{ user.username }}!</p>
+        {% else %}
+          <a href="{% url 'login' %}">Log In</a> |
+          <a href="{% url 'signup' %}">Sign Up</a>
+          <p>You are not logged in.</p>
+        {% endif %}
+      </div>
+    </header>
+    
+    <div class="row">
+      <div class="col-md-1" style="background-color:maroon;"></div>
+
+    <div class="col-md-10">
+      {% block content %}
+      {% endblock content %}
+    <hr>
+    <footer>
+        <details>
+          <summary>*NOTE*</summary>
+          <p>If you want to create a blog post, go to <a href="{% url 'post_new' %}">Create Blog Post</a></p>
+          <p>Any user at the moment can make a blog post. While this whould be acceptable for reviews,
+            users will not be able to create blog post in future assignments.
+          </p>
+        </details>
+        <p>Reach us at:<br>
+        cmsennett1@buffs.wtamu.edu | (555) 123-4567<img src="{% static 'media/CoffeeCup.jpg' %}" alt="Coffee Cup" alt="Coffee Cup" width="15" height="15" /></p>
+  </footer>
+</div>
+    <script 
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" 
+    crossorigin="anonymous"></script>
+  </body>
+</html>
